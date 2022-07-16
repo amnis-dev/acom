@@ -1,0 +1,4 @@
+{
+  "extends": "@amnis/tsconfig-node",
+  "include": ["./*.ts"]
+}
