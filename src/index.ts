@@ -1,1 +1,1 @@
-export default 'INDEX';
+export * from './acom';

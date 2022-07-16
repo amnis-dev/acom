@@ -1,5 +1,5 @@
 {
-  "exec": "ts-node -P tsconfig.json",
+  "exec": "yarn build",
   "watch": ["./src"],
   "ext": "ts",
   "delay": 2500

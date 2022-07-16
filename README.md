@@ -1,3 +1,3 @@
-# A Command (ACom)
+# A Command (acom)
 
-Common commands and scripts for various Amnis (or general) projects.
+Common use commands and scripts for various Amnis (or general) projects.

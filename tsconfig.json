@@ -4,7 +4,8 @@
     "outDir": "./lib",
     "declarationDir": "./lib",
     "sourceMap": false,
-    "baseUrl": "./",
+    "rootDir": "./src",
+    "moduleResolution": "node"
   },
   "include": ["./src/**/*.ts"],
 }

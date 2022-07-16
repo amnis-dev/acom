@@ -5,3 +5,7 @@
 process.on('unhandledRejection', err => {
   throw err;
 });
+
+require = require('esm')(module);
+
+require('../lib/cli').cli(process.argv.slice(2));
