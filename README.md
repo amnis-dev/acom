@@ -1,2 +1,3 @@
-# scripts
-Common scripts used within Amnis projects.
+# A Command (ACom)
+
+Common commands and scripts for various Amnis (or general) projects.
