@@ -1,7 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import fse from 'fs-extra';
+import nodePath from 'path';
+import { execSync } from 'child_process';
 import c from './utility/console';
 import fop from './utility/fop';
 import { pack } from './utility/pack';
+import { tsrefOrder, TsrefScore, tsrefScore } from './utility/tsref';
 
 /**
  * Build options.
@@ -71,6 +75,11 @@ export const build: Build = async ({
   const packPromises: Promise<void>[] = [];
   const rootCwd = process.cwd();
 
+  /**
+   * Score to determine build order.
+   */
+  const buildScore: TsrefScore = {};
+
   paths.every((p) => {
     process.chdir(`${rootCwd}/${p.directory}`);
     /**
@@ -92,13 +101,46 @@ export const build: Build = async ({
     }
 
     /**
+     * Calculates build order based on references in the tsconfig file.
+     */
+    const score = tsrefScore(tsBuildConfigFile);
+    Object.keys(score).forEach((key) => {
+      if (buildScore[key]) {
+        buildScore[key] += score[key];
+      } else {
+        buildScore[key] = score[key];
+      }
+    });
+
+    /**
      * Run the pack method to bundle and output the package.
      */
-    packPromises.push(pack(entry, out, tsBuildConfigFile, { rootDir: rootCwd, dryRun }));
     return true;
   });
 
-  await Promise.all(packPromises).then(() => {
-    c.em('BUILD COMPLETE');
-  });
+  const buildOrder = tsrefOrder(buildScore);
+
+  // eslint-disable-next-line guard-for-in, no-restricted-syntax
+  for (const tsConfigFile of buildOrder) {
+    process.chdir(nodePath.dirname(tsConfigFile));
+    console.log({ type });
+    if (type === 'library') {
+      c.item('Transpiling:', nodePath.dirname(tsConfigFile));
+      const tscCommand = `${rootCwd}/node_modules/typescript/bin/tsc --project tsconfig.build.json`;
+      try {
+        execSync(tscCommand);
+      } catch (error: any) {
+        c.error(`OUTPUT: ${error.output.toString()}`);
+        c.error(`STDOUT: ${error.stdout.toString()}`);
+        c.error(`STDERR: ${error.stderr.toString()}`);
+        process.exit(1);
+      }
+    }
+
+    if (type === 'service') {
+      c.item('Bundling:', nodePath.dirname(tsConfigFile));
+      // eslint-disable-next-line no-await-in-loop
+      await pack(entry, out, nodePath.basename(tsConfigFile), { rootDir: rootCwd, dryRun });
+    }
+  }
 };

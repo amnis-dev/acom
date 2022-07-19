@@ -83,11 +83,13 @@ export const pack: Pack = async (
     const moduleOutput = await bundle.generate({
       file: `${out}/${bundleName}.module.js`,
       format: 'module',
+      minifyInternalExports: true,
     });
     const umdOutput = await bundle.generate({
       name: bundleName,
       file: `${out}/${bundleName}.umd.js`,
       format: 'umd',
+      minifyInternalExports: true,
     });
 
     writeOutput(moduleOutput, out, dryRun);

@@ -1,4 +1,3 @@
-import { positional } from 'yargs';
 import yargs from 'yargs/yargs';
 import { acom } from './acom';
 import { build, BuildOptions } from './build';
@@ -31,7 +30,7 @@ export async function cli(argv: string[]) {
         })
         .option('type', {
           alias: 't',
-          type: 'array',
+          type: 'string',
           description: 'Type of package to build.',
           choices: ['library', 'service'],
           default: 'library',

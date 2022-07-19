@@ -12,7 +12,6 @@ export const rollupLibraryConfig: RollupConfigMethod = (
   },
 ) => ({
   input,
-  cache: false,
   plugins: [
     json(),
     nodeResolve({
@@ -22,8 +21,9 @@ export const rollupLibraryConfig: RollupConfigMethod = (
       tsconfig,
       outDir: output,
       declarationDir: output,
-      declaration: undefined,
+      declaration: true,
       moduleResolution: 'node',
+      outputToFilesystem: true,
     }),
   ],
   onwarn(warning) {
