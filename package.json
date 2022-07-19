@@ -9,7 +9,8 @@
   "private": false,
   "scripts": {
     "build": "tsc --project ./tsconfig.json",
-    "dev": "nodemon"
+    "dev": "nodemon",
+    "lint": "eslint --ext .ts --ext .tsx \"./\""
   },
   "bin": {
     "acom": "bin/acom"

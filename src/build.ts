@@ -72,7 +72,6 @@ export const build: Build = async ({
   }));
   c.nl();
 
-  const packPromises: Promise<void>[] = [];
   const rootCwd = process.cwd();
 
   /**
