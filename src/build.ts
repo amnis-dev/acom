@@ -123,7 +123,6 @@ export const build: Build = async ({
   // eslint-disable-next-line guard-for-in, no-restricted-syntax
   for (const tsConfigFile of buildOrder) {
     process.chdir(nodePath.dirname(tsConfigFile));
-    console.log({ type });
     if (type === 'library') {
       c.item('Transpiling:', nodePath.dirname(tsConfigFile));
       const tscCommand = `${rootCwd}/node_modules/typescript/bin/tsc --project tsconfig.build.json`;
