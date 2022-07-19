@@ -27,8 +27,26 @@ function log(text: string) {
   l(text);
 }
 
+function warn(text: string) {
+  l(chalk.yellow(text));
+}
+
+function error(text: string) {
+  l(chalk.red(text));
+}
+
+function success(text: string) {
+  l(chalk.green(text));
+}
+
 function item(title: string, text: string) {
   l(`${chalk.blue.bold(title)} ${text}`);
+}
+
+function list(items: string[]) {
+  items.forEach((i) => {
+    l(`${chalk.blue.bold(' * ')} ${i}`);
+  });
 }
 
 export default {
@@ -36,5 +54,9 @@ export default {
   em,
   banner,
   log,
+  warn,
+  error,
+  success,
   item,
+  list,
 };

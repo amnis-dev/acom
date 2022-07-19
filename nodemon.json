@@ -2,5 +2,5 @@
   "exec": "yarn build",
   "watch": ["./src"],
   "ext": "ts",
-  "delay": 2500
+  "delay": 100
 }

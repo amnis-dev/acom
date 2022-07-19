@@ -1,7 +1,7 @@
 {
   "name": "acom",
   "version": "0.1.0-aplha.1",
-  "description": "Common commands and scripts for Amnis or general projects.",
+  "description": "A command for executing common tasks for Amnis or general TypeScript projects.",
   "main": "lib/index.js",
   "repository": "git@github.com:amnis-dev/acom.git",
   "author": "Eric Crowell <eric.crowell@ecrow.dev>",
@@ -19,6 +19,8 @@
     "lib"
   ],
   "dependencies": {
+    "@rollup/plugin-json": "^4.1.0",
+    "@rollup/plugin-node-resolve": "^13.3.0",
     "@rollup/plugin-typescript": "^8.3.3",
     "chalk": "4.1.2",
     "esm": "^3.2.25",
