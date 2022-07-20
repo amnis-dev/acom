@@ -1,6 +1,6 @@
 {
   "name": "@amnis/acom",
-  "version": "0.1.0-alpha.2",
+  "version": "0.1.0-alpha.1",
   "description": "A command for executing common tasks for Amnis or general TypeScript projects.",
   "main": "lib/index.js",
   "repository": "git@github.com:amnis-dev/acom.git",
