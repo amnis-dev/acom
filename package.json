@@ -1,10 +1,10 @@
 {
-  "name": "acom",
+  "name": "@amnis/acom",
   "version": "0.1.0-aplha.1",
   "description": "A command for executing common tasks for Amnis or general TypeScript projects.",
   "main": "lib/index.js",
   "repository": "git@github.com:amnis-dev/acom.git",
-  "author": "Eric Crowell <eric.crowell@ecrow.dev>",
+  "author": "Eric Crowell <admin@amnis.dev>",
   "license": "MIT",
   "private": false,
   "scripts": {

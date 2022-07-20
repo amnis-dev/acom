@@ -1,0 +1,35 @@
+name: Package
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  build_and_publish:
+    runs-on: ubuntu-latest
+    name: Build and Publish
+
+    steps:
+
+    - name: Checkout Respository
+      uses: actions/checkout@v2
+
+    - name: Setup NodeJS with Yarn Caching
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16.x'
+        cache: 'yarn'
+        cache-dependency-path: 'yarn.lock'
+        registry-url: 'https://registry.npmjs.org'
+        scope: '@amnis'
+
+    - name: Install NodeJS Dependencies
+      run: yarn install
+
+    - name: Build Project
+      run: yarn build
+
+    - name: Publish Projects
+      run: yarn publish --access public
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
